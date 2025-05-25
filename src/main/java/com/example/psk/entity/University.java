@@ -1,6 +1,7 @@
+// src/main/java/com/example/psk/entity/University.java
 package com.example.psk.entity;
 
-import jakarta.persistence.*;
+import javax.persistence.*;
 import java.util.List;
 
 @Entity
@@ -11,32 +12,30 @@ public class University {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    // field name differs from column name: map uniName → name
     @Column(name = "name", nullable = false)
-    private String uniName;
+    private String name;
 
-    // one university → many students
-    @OneToMany(mappedBy = "university", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "university",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true)
     private List<Student> students;
 
-    // --- constructors, getters, setters ---
+    public University() { }
 
-    public University() {}
-
-    public University(String uniName) {
-        this.uniName = uniName;
+    public University(String name) {
+        this.name = name;
     }
 
     public Integer getId() {
         return id;
     }
 
-    public String getUniName() {
-        return uniName;
+    public String getName() {
+        return name;
     }
 
-    public void setUniName(String uniName) {
-        this.uniName = uniName;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public List<Student> getStudents() {

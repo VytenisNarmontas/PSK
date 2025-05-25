@@ -1,10 +1,11 @@
+// src/main/java/com/example/psk/dao/StudentDao.java
 package com.example.psk.dao;
 
 import com.example.psk.entity.Student;
-import jakarta.enterprise.context.ApplicationScoped;
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.PersistenceContext;
-import jakarta.transaction.Transactional;
+import javax.enterprise.context.ApplicationScoped;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.transaction.Transactional;
 import java.util.List;
 
 /**

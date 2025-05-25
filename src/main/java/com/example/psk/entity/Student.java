@@ -1,6 +1,7 @@
+// src/main/java/com/example/psk/entity/Student.java
 package com.example.psk.entity;
 
-import jakarta.persistence.*;
+import javax.persistence.*;
 import java.util.Set;
 
 @Entity
@@ -28,8 +29,6 @@ public class Student {
             inverseJoinColumns = @JoinColumn(name = "course_id")
     )
     private Set<Course> courses;
-
-    // --- constructors, getters, setters ---
 
     public Student() {}
 

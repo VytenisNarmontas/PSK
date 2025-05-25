@@ -1,20 +1,19 @@
+// src/main/java/com/example/psk/dao/UniversityDao.java
 package com.example.psk.dao;
 
 import com.example.psk.entity.University;
-import jakarta.enterprise.context.ApplicationScoped;
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.PersistenceContext;
-import jakarta.transaction.Transactional;
+import javax.enterprise.context.ApplicationScoped;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.transaction.Transactional;
 import java.util.List;
 
 /**
  * DAO for University (uses JPA).
- * @ApplicationScoped makes this a singleton bean in CDI.
  */
 @ApplicationScoped
 public class UniversityDao {
 
-    // injects the JPA EntityManager tied to persistence-unit "pskPU"
     @PersistenceContext(unitName = "pskPU")
     private EntityManager em;
 
@@ -29,7 +28,7 @@ public class UniversityDao {
                 .getResultList();
     }
 
-    /** Persist a new University; @Transactional gives us declarative transactions */
+    /** Persist a new University */
     @Transactional
     public void create(University uni) {
         em.persist(uni);

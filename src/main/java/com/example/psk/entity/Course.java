@@ -1,6 +1,7 @@
+// src/main/java/com/example/psk/entity/Course.java
 package com.example.psk.entity;
 
-import jakarta.persistence.*;
+import javax.persistence.*;
 import java.util.Set;
 
 @Entity
@@ -18,8 +19,6 @@ public class Course {
     // inverse side of Student ↔ Course
     @ManyToMany(mappedBy = "courses")
     private Set<Student> students;
-
-    // --- constructors, getters, setters ---
 
     public Course() {}
 
