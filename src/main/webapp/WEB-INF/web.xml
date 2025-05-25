@@ -25,7 +25,7 @@
 
   <!-- Welcome File List: default to index.xhtml -->
   <welcome-file-list>
-    <welcome-file>university.xhtml</welcome-file>
+    <welcome-file>student.xhtml</welcome-file>
   </welcome-file-list>
 
 </web-app>
