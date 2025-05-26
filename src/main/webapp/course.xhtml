@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+    <title>Courses</title>
+</h:head>
+<h:body>
+    <h1>Manage Courses</h1>
+
+    <!-- form to add a new course -->
+    <h:form>
+        <h:panelGrid columns="2" cellpadding="5">
+            <h:outputLabel for="title" value="Title:"/>
+            <h:inputText id="title"
+                         value="#{courseBean.newCourse.courseTitle}"
+                         required="true"
+                         requiredMessage="Title is required"/>
+        </h:panelGrid>
+        <h:commandButton value="Create"
+                         action="#{courseBean.createCourse}"
+                         style="margin-top:1em"/>
+    </h:form>
+
+    <!-- table of existing courses -->
+    <h:dataTable value="#{courseBean.courses}" var="c" border="1" cellpadding="5">
+        <h:column>
+            <f:facet name="header">ID</f:facet>
+            #{c.id}
+        </h:column>
+        <h:column>
+            <f:facet name="header">Title</f:facet>
+            #{c.courseTitle}
+        </h:column>
+    </h:dataTable>
+
+    <p><h:link outcome="index.xhtml" value="← Back to Home"/></p>
+</h:body>
+</html>

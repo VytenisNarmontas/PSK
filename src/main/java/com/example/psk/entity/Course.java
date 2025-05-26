@@ -10,10 +10,10 @@ public class Course {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Integer id;            // match your BIGINT!
 
-    // map courseTitle → title
-    @Column(name = "title", nullable = false)
+    // map this java field to the DB column "name"
+    @Column(name = "name", nullable = false, length = 255)
     private String courseTitle;
 
     // inverse side of Student ↔ Course
