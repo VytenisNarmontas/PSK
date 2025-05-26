@@ -7,14 +7,18 @@
     <title>Manage Students</title>
 </h:head>
 <h:body>
-    <h:form>
-        <h:panelGrid columns="2" cellpadding="5">
+    <!-- existing “Add Student” form -->
+    <h:form id="addForm">
+        <!-- global messages for this form -->
+        <h:messages globalOnly="true" layout="table" style="color:red"/>
 
+        <h:panelGrid columns="2" cellpadding="5">
             <h:outputLabel for="name" value="Name:"/>
             <h:inputText id="name"
                          value="#{studentBean.newStudent.studentName}"
                          required="true"
                          requiredMessage="Name is required"/>
+            <h:message for="name" style="color:red"/>
 
             <h:outputLabel for="univ" value="University:"/>
             <h:selectOneMenu id="univ"
@@ -25,6 +29,7 @@
                 <f:selectItems value="#{studentBean.universities}" var="u"
                                itemValue="#{u.id}" itemLabel="#{u.name}" />
             </h:selectOneMenu>
+            <h:message for="univ" style="color:red"/>
 
             <h:outputLabel for="courses" value="Courses:"/>
             <h:selectManyCheckbox id="courses"
@@ -33,7 +38,6 @@
                 <f:selectItems value="#{studentBean.courses}" var="c"
                                itemValue="#{c.id}" itemLabel="#{c.courseTitle}" />
             </h:selectManyCheckbox>
-
         </h:panelGrid>
 
         <h:commandButton value="Add Student"
@@ -41,11 +45,21 @@
                          style="margin-top:1em"/>
     </h:form>
 
+    <!-- existing table of students -->
     <h3>Existing Students</h3>
     <h:dataTable value="#{studentBean.students}" var="s" border="1" cellpadding="5">
-        <h:column><f:facet name="header">ID</f:facet>#{s.id}</h:column>
-        <h:column><f:facet name="header">Name</f:facet>#{s.studentName}</h:column>
-        <h:column><f:facet name="header">University</f:facet>#{s.university.name}</h:column>
+        <h:column>
+            <f:facet name="header">ID</f:facet>
+            #{s.id}
+        </h:column>
+        <h:column>
+            <f:facet name="header">Name</f:facet>
+            #{s.studentName}
+        </h:column>
+        <h:column>
+            <f:facet name="header">University</f:facet>
+            #{s.university.name}
+        </h:column>
         <h:column>
             <f:facet name="header">Courses</f:facet>
             <ui:repeat value="#{s.courses}" var="c">
@@ -53,6 +67,26 @@
             </ui:repeat>
         </h:column>
     </h:dataTable>
+
+    <!-- NEW: Optimistic Lock Demo section -->
+    <h3>Optimistic Locking Demo</h3>
+    <h:form id="demoForm">
+        <!-- messages for demo form -->
+        <h:messages globalOnly="true" layout="table" style="color:red"/>
+
+        <h:panelGrid columns="2" cellpadding="5">
+            <h:outputLabel for="demoId" value="Student ID to Demo:"/>
+            <h:inputText id="demoId"
+                         value="#{studentBean.demoStudentId}"
+                         required="true"
+                         requiredMessage="Please enter a Student ID"/>
+            <h:message for="demoId" style="color:red"/>
+        </h:panelGrid>
+
+        <h:commandButton value="Run Demo"
+                         action="#{studentBean.runOptimisticDemo}"
+                         style="margin-top:1em"/>
+    </h:form>
 
     <p><h:link outcome="index.xhtml" value="← Back to Home"/></p>
 </h:body>

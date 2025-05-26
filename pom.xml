@@ -56,6 +56,14 @@
       <scope>provided</scope>
     </dependency>
 
+    <!-- EJB API (for @Stateless, @Asynchronous, etc.) -->
+    <dependency>
+      <groupId>javax.ejb</groupId>
+      <artifactId>javax.ejb-api</artifactId>
+      <version>3.2</version>
+      <scope>provided</scope>
+    </dependency>
+
     <!-- MySQL JDBC driver -->
     <dependency>
       <groupId>com.mysql</groupId>

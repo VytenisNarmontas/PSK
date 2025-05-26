@@ -11,6 +11,9 @@ import com.example.psk.entity.Course;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
+import javax.persistence.OptimisticLockException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -31,46 +34,55 @@ public class StudentBean implements Serializable {
     @Inject
     private CourseDao courseDao;
 
+    @Inject
+    private OptimisticLockDemo optimisticLockDemo;
+
+    // for “Add Student”
     private Student newStudent = new Student();
     private Integer selectedUniversityId;
     private List<Integer> selectedCourseIds = new ArrayList<>();
 
+    // for “Optimistic Locking Demo”
+    private Integer demoStudentId;
+
+    // ======== Getters & Setters ========
     public Student getNewStudent() {
         return newStudent;
     }
-
     public void setNewStudent(Student newStudent) {
         this.newStudent = newStudent;
     }
-
     public Integer getSelectedUniversityId() {
         return selectedUniversityId;
     }
-
     public void setSelectedUniversityId(Integer selectedUniversityId) {
         this.selectedUniversityId = selectedUniversityId;
     }
-
     public List<Integer> getSelectedCourseIds() {
         return selectedCourseIds;
     }
-
     public void setSelectedCourseIds(List<Integer> selectedCourseIds) {
         this.selectedCourseIds = selectedCourseIds;
     }
+    public Integer getDemoStudentId() {
+        return demoStudentId;
+    }
+    public void setDemoStudentId(Integer demoStudentId) {
+        this.demoStudentId = demoStudentId;
+    }
 
+    // ======== Data for selects & table ========
     public List<University> getUniversities() {
         return universityDao.findAll();
     }
-
     public List<Course> getCourses() {
         return courseDao.findAll();
     }
-
     public List<Student> getStudents() {
         return studentDao.findAll();
     }
 
+    // ======== Actions ========
     public String createStudent() {
         University u = universityDao.findById(selectedUniversityId);
         newStudent.setUniversity(u);
@@ -82,9 +94,33 @@ public class StudentBean implements Serializable {
 
         studentDao.create(newStudent);
 
+        // reset form
         newStudent = new Student();
         selectedUniversityId = null;
         selectedCourseIds.clear();
         return null;
+    }
+
+    public void runOptimisticDemo() {
+        try {
+            optimisticLockDemo.runDemo(demoStudentId);
+            FacesContext.getCurrentInstance()
+                    .addMessage(null,
+                            new FacesMessage(FacesMessage.SEVERITY_INFO,
+                                    "Demo completed successfully",
+                                    null));
+        } catch (javax.ejb.EJBException ejbEx) {
+            Throwable cause = ejbEx.getCause();
+            if (cause instanceof OptimisticLockException) {
+                FacesContext.getCurrentInstance()
+                        .addMessage(null,
+                                new FacesMessage(FacesMessage.SEVERITY_ERROR,
+                                        "Optimistic lock failed: " + cause.getMessage(),
+                                        null));
+            } else {
+                // re–throw anything else
+                throw ejbEx;
+            }
+        }
     }
 }

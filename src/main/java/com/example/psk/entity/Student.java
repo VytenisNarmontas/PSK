@@ -28,8 +28,12 @@ public class Student {
     )
     private Set<Course> courses = new HashSet<>();
 
-    public Student() {}
+    // --------- NEW: Optimistic locking version field ---------
+    @Version
+    @Column(name = "version", nullable = false)
+    private Integer version;
 
+    public Student() {}
     public Student(String studentName, University university) {
         this.studentName = studentName;
         this.university = university;
@@ -42,7 +46,6 @@ public class Student {
     public String getStudentName() {
         return studentName;
     }
-
     public void setStudentName(String studentName) {
         this.studentName = studentName;
     }
@@ -50,7 +53,6 @@ public class Student {
     public University getUniversity() {
         return university;
     }
-
     public void setUniversity(University university) {
         this.university = university;
     }
@@ -58,8 +60,11 @@ public class Student {
     public Set<Course> getCourses() {
         return courses;
     }
-
     public void setCourses(Set<Course> courses) {
         this.courses = courses;
+    }
+
+    public Integer getVersion() {
+        return version;
     }
 }
