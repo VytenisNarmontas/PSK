@@ -1,4 +1,3 @@
-// src/main/java/com/example/psk/dao/UniversityDao.java
 package com.example.psk.dao;
 
 import com.example.psk.entity.University;
@@ -15,12 +14,10 @@ public class UniversityDao {
     @PersistenceContext(unitName = "pskPU")
     private EntityManager em;
 
-    /** Find by primary key */
     public University findById(Integer id) {
         return em.find(University.class, id);
     }
 
-    /** List all universities, eagerly fetching students */
     public List<University> findAll() {
         return em.createQuery(
                 "SELECT DISTINCT u FROM University u LEFT JOIN FETCH u.students",
@@ -28,13 +25,11 @@ public class UniversityDao {
         ).getResultList();
     }
 
-    /** Persist a new University */
     @Transactional
     public void create(University uni) {
         em.persist(uni);
     }
 
-    /** Update an existing University */
     @Transactional
     public University update(University uni) {
         return em.merge(uni);

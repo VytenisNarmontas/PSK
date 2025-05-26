@@ -1,4 +1,3 @@
-// src/main/java/com/example/psk/service/StudentBean.java
 package com.example.psk.service;
 
 import com.example.psk.dao.StudentDao;
@@ -92,8 +91,6 @@ public class StudentBean implements Serializable {
         return asyncResult;
     }
 
-    // ======== Data for selects & table ========
-
     public List<University> getUniversities() {
         return universityDao.findAll();
     }
@@ -106,8 +103,6 @@ public class StudentBean implements Serializable {
         return studentDao.findAll();
     }
 
-    // ======== Actions ========
-
     public String createStudent() {
         University u = universityDao.findById(selectedUniversityId);
         newStudent.setUniversity(u);
@@ -119,7 +114,6 @@ public class StudentBean implements Serializable {
 
         studentDao.create(newStudent);
 
-        // reset form
         newStudent = new Student();
         selectedUniversityId = null;
         selectedCourseIds.clear();

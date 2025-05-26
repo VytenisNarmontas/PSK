@@ -4,9 +4,6 @@ import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-/**
- * JSF backing bean for CDI-extensibility demos.
- */
 @Named("testBean")
 @RequestScoped
 public class TestBean {

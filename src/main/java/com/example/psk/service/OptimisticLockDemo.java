@@ -14,13 +14,8 @@ public class OptimisticLockDemo {
 
     public void runDemo(Integer studentId) {
         try {
-            // 1) load a detached copy
             Student stale = worker.loadDetached(studentId);
-
-            // 2) bump version in the DB
             worker.updateBumpVersion(studentId);
-
-            // 3) now try to merge the stale entity
             worker.mergeDetached(stale);
 
         } catch (OptimisticLockException ole) {

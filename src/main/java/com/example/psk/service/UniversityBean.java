@@ -1,4 +1,3 @@
-// src/main/java/com/example/psk/service/UniversityBean.java
 package com.example.psk.service;
 
 import com.example.psk.dao.UniversityDao;
@@ -10,9 +9,6 @@ import javax.inject.Named;
 import java.io.Serializable;
 import java.util.List;
 
-/**
- * Backing bean for university.xhtml.
- */
 @Named("universityBean")
 @RequestScoped
 public class UniversityBean implements Serializable {
@@ -35,7 +31,6 @@ public class UniversityBean implements Serializable {
         this.newUniversity = newUniversity;
     }
 
-    /** Called when the form is submitted */
     public String create() {
         universityDao.create(newUniversity);
         newUniversity = new University();

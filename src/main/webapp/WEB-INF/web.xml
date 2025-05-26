@@ -5,13 +5,11 @@
                              http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
          version="4.0">
 
-  <!-- JSF in Development Mode -->
   <context-param>
     <param-name>jakarta.faces.PROJECT_STAGE</param-name>
     <param-value>Development</param-value>
   </context-param>
 
-  <!-- Faces Servlet -->
   <servlet>
     <servlet-name>FacesServlet</servlet-name>
     <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
@@ -23,7 +21,6 @@
   </servlet-mapping>
 
 
-  <!-- Welcome File List: default to index.xhtml -->
   <welcome-file-list>
     <welcome-file>index.xhtml</welcome-file>
   </welcome-file-list>

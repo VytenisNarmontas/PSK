@@ -5,17 +5,17 @@
                            http://xmlns.jcp.org/xml/ns/javaee/beans_2_0.xsd"
        bean-discovery-mode="all">
 
-    <!-- 1. Activate our Alternative
+    <!-- Activate alternative-->
     <alternatives>
         <class>com.example.psk.service.AlternativeExampleService</class>
-    </alternatives>-->
+    </alternatives>
 
-    <!-- 2. Enable our Interceptor-->
+    <!-- Enable interceptor-->
     <interceptors>
         <class>com.example.psk.interceptor.LoggingInterceptor</class>
     </interceptors>
 
-    <!-- 3. Enable our Decorator-->
+    <!-- Enable decorator-->
     <decorators>
         <class>com.example.psk.decorator.ExampleDecorator</class>
     </decorators>

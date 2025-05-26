@@ -9,7 +9,6 @@ public class MyOptimisticLockException extends OptimisticLockException {
         super(message);
     }
 
-    // added so you can wrap the original cause
     public MyOptimisticLockException(String message, Throwable cause) {
         super(message, cause);
     }

@@ -1,4 +1,3 @@
-// src/main/java/com/example/psk/entity/University.java
 package com.example.psk.entity;
 
 import javax.persistence.*;

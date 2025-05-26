@@ -4,9 +4,6 @@ import javax.interceptor.AroundInvoke;
 import javax.interceptor.Interceptor;
 import javax.interceptor.InvocationContext;
 
-/**
- * An interceptor that logs around any @Loggable method.
- */
 @Loggable
 @Interceptor
 public class LoggingInterceptor {

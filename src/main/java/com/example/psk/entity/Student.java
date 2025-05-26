@@ -1,4 +1,3 @@
-// src/main/java/com/example/psk/entity/Student.java
 package com.example.psk.entity;
 
 import javax.persistence.*;
@@ -28,7 +27,6 @@ public class Student {
     )
     private Set<Course> courses = new HashSet<>();
 
-    // --------- NEW: Optimistic locking version field ---------
     @Version
     @Column(name = "version", nullable = false)
     private Integer version;

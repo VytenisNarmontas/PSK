@@ -33,6 +33,6 @@ public class CourseBean implements Serializable {
     public String createCourse() {
         courseDao.create(newCourse);
         newCourse = new Course();
-        return null; // stay on same page
+        return null;
     }
 }

@@ -5,22 +5,10 @@
     <title>CDI Extensibility Demo</title>
 </h:head>
 <h:body>
-    <h1>CDI Extensibility Demo</h1>
-
-    <h2>Alternative / Specializes / Decorator / Interceptor</h2>
     <p>
-        This will invoke <code>ExampleService.greet()</code> under the hood:
         <strong><h:outputText value="#{testBean.greeting}"/></strong>
     </p>
 
-    <h3>Toggle in <code>beans.xml</code>:</h3>
-    <ul>
-        <li><code>&lt;alternatives&gt;</code> – switch between the default and your @Alternative bean</li>
-        <li><code>&lt;specializes&gt;</code> – choose which implementation “wins”</li>
-        <li><code>&lt;interceptors&gt;</code> – turn logging on/off</li>
-        <li><code>&lt;decorators&gt;</code> – wrap / unwrap your decorator</li>
-    </ul>
-
-    <h:link outcome="index.xhtml" value="← Back to Dashboard"/>
+    <h:link outcome="index.xhtml" value=" Back to Index"/>
 </h:body>
 </html>

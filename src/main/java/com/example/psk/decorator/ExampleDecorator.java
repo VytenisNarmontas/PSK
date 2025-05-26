@@ -15,7 +15,6 @@ public class ExampleDecorator implements ExampleService {
 
     @Override
     public String greet() {
-        // prefix the original greeting
         return "[Decorated] " + delegate.greet();
     }
 }

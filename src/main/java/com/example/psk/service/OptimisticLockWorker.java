@@ -16,7 +16,6 @@ public class OptimisticLockWorker {
     @PersistenceContext(unitName = "pskPU")
     private EntityManager em;
 
-    /** Runs in its own transaction, finds and detaches the student. */
     @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
     public Student loadDetached(Integer id) {
         Student s = em.find(Student.class, id);
@@ -24,18 +23,12 @@ public class OptimisticLockWorker {
         return s;
     }
 
-    /** Runs in its own transaction, bumps the version by updating the row. */
     @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
     public void updateBumpVersion(Integer id) {
         Student s = em.find(Student.class, id);
         s.setStudentName(s.getStudentName() + " [T1]");
-        // when this tx commits, version++ happens
     }
 
-    /**
-     * Runs in its own transaction, attempts to merge the old detached entity.
-     * Wraps any JPA OptimisticLockException in your MyOptimisticLockException.
-     */
     @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
     public void mergeDetached(Student detached) {
         try {

@@ -1,4 +1,3 @@
-// src/main/java/com/example/psk/service/AsyncWorker.java
 package com.example.psk.service;
 
 import javax.ejb.Asynchronous;
@@ -17,9 +16,6 @@ public class AsyncWorker {
 
     private final ExecutorService executor = Executors.newSingleThreadExecutor();
 
-    /**
-     * Simulates a long-running computation and returns a Future<String>.
-     */
     @Asynchronous
     @TransactionAttribute(TransactionAttributeType.NOT_SUPPORTED)
     public Future<String> doLongComputation() {

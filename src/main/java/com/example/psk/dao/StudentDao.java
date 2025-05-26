@@ -1,4 +1,3 @@
-// src/main/java/com/example/psk/dao/StudentDao.java
 package com.example.psk.dao;
 
 import com.example.psk.entity.Student;
