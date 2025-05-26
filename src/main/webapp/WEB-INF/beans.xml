@@ -4,4 +4,20 @@
        xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee
                            http://xmlns.jcp.org/xml/ns/javaee/beans_2_0.xsd"
        bean-discovery-mode="all">
+
+    <!-- 1. Activate our Alternative
+    <alternatives>
+        <class>com.example.psk.service.AlternativeExampleService</class>
+    </alternatives>-->
+
+    <!-- 2. Enable our Interceptor-->
+    <interceptors>
+        <class>com.example.psk.interceptor.LoggingInterceptor</class>
+    </interceptors>
+
+    <!-- 3. Enable our Decorator-->
+    <decorators>
+        <class>com.example.psk.decorator.ExampleDecorator</class>
+    </decorators>
+
 </beans>
