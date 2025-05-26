@@ -2,6 +2,7 @@
 package com.example.psk.entity;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -10,15 +11,13 @@ public class Course {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;            // match your BIGINT!
+    private Integer id;
 
-    // map this java field to the DB column "name"
     @Column(name = "name", nullable = false, length = 255)
     private String courseTitle;
 
-    // inverse side of Student ↔ Course
-    @ManyToMany(mappedBy = "courses")
-    private Set<Student> students;
+    @ManyToMany(mappedBy = "courses", fetch = FetchType.LAZY)
+    private Set<Student> students = new HashSet<>();
 
     public Course() {}
 

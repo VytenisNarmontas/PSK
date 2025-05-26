@@ -2,6 +2,7 @@
 package com.example.psk.entity;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -12,23 +13,20 @@ public class Student {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    // map studentName → name
     @Column(name = "name", nullable = false)
     private String studentName;
 
-    // many students → one university
-    @ManyToOne
-    @JoinColumn(name = "university_id")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "university_id", nullable = false)
     private University university;
 
-    // many-to-many: students ↔ courses via join table student_course
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "student_course",
-            joinColumns = @JoinColumn(name = "student_id"),
+            joinColumns =  @JoinColumn(name = "student_id"),
             inverseJoinColumns = @JoinColumn(name = "course_id")
     )
-    private Set<Course> courses;
+    private Set<Course> courses = new HashSet<>();
 
     public Student() {}
 

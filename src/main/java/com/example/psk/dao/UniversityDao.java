@@ -2,15 +2,13 @@
 package com.example.psk.dao;
 
 import com.example.psk.entity.University;
+
 import javax.enterprise.context.ApplicationScoped;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 import java.util.List;
 
-/**
- * DAO for University (uses JPA).
- */
 @ApplicationScoped
 public class UniversityDao {
 
@@ -22,10 +20,12 @@ public class UniversityDao {
         return em.find(University.class, id);
     }
 
-    /** List all universities */
+    /** List all universities, eagerly fetching students */
     public List<University> findAll() {
-        return em.createQuery("SELECT u FROM University u", University.class)
-                .getResultList();
+        return em.createQuery(
+                "SELECT DISTINCT u FROM University u LEFT JOIN FETCH u.students",
+                University.class
+        ).getResultList();
     }
 
     /** Persist a new University */
